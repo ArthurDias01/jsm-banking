@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { CustomInput } from "./CustomInput";
+import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
   const router = useRouter();
@@ -40,8 +41,21 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
     setIsLoading(true);
     try {
       // sign up with AppWrite & create a plaid token
+      const userData = {
+        email: values.email,
+        password: values.password,
+        firstName: values.firstName!,
+        lastName: values.lastName!,
+        address1: values.address1!,
+        city: values.city!,
+        state: values.state!,
+        postalCode: values.postalCode!,
+        dateOfBirth: values.dateOfBirth!,
+        ssn: values.ssn!,
+      };
+
       if (type === "sign-up") {
-        const newUser = await signUp(values);
+        const newUser = await signUp(userData);
         setUser(newUser);
       }
 
@@ -53,7 +67,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
         if (response) router.push("/");
       }
     } catch (error) {
-      console.error("ERROR ON SIGINING IN",error);
+      console.error("ERROR ON SIGINING IN", error);
     } finally {
       setIsLoading(false);
     }
@@ -85,7 +99,9 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
         </div>
       </header>
       {user ? (
-        <div className="flex flex-col gap-4">{/** PlaidLink */}</div>
+        <div className="flex flex-col gap-4">
+          <PlaidLink user={user} variant="primary" />
+        </div>
       ) : (
         <>
           <Form {...form}>
