@@ -15,7 +15,6 @@ export const signIn = async ({ email, password }: SignInProps) => {
       sameSite: "strict",
       secure: true,
     });
-    console.log("RESPONSE on ACTION", response);
     return parseStringify(response);
   } catch (error) {
     console.error("ERROR ON SIGN IN",error);

@@ -50,7 +50,6 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
           email: values.email,
           password: values.password,
         });
-        console.log("RESPONSE client side", response)
         if (response) router.push("/");
       }
     } catch (error) {
