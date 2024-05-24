@@ -22,7 +22,7 @@ export const BankCard = ({
 
           <article className="flex flex-col gap-2">
             <div className="flex justify-between">
-              <h1 className="text-12 font-semibold text-white">
+              <h1 className="text-12 font-semibold text-white truncate">
                 {userName}
               </h1>
               <h2 className="text-12 font-semibold text-white">

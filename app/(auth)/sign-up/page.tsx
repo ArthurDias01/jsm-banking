@@ -1,7 +1,11 @@
-const SignUp = () => {
-  return (
-    <div>SignUp</div>
-  )
-}
+import AuthForm from "@/components/AuthForm";
 
-export default SignUp
+const SignUp = async () => {
+  return (
+    <section className="flex-center size-full max-sm:px-6">
+      <AuthForm type="sign-up" />
+    </section>
+  );
+};
+
+export default SignUp;
