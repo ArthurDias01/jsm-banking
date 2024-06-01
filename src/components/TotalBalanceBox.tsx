@@ -1,5 +1,5 @@
 import { AnimatedCounter } from "./AnimatedCounter";
-import { DoughoutChart } from "./DoughoutChart";
+import { DoughnutChart } from "./DoughoutChart";
 
 export const TotalBalanceBox = ({
   accounts,
@@ -10,11 +10,11 @@ export const TotalBalanceBox = ({
   return (
     <section className="total-balance">
       <div className="total-balance-chart">
-        <DoughoutChart accounts={accounts} />
+        <DoughnutChart accounts={accounts} />
       </div>
       <div className="flex flex-col gap-6">
         <h2 className="header-2">
-          {totalBanks} Bank Account{totalBanks > 1 ? "s" : ""}
+          Bank Account{totalBanks > 1 ? "s" : ""}: {totalBanks}
         </h2>
         <div className="flex flex-col gap-2">
           <p className="total-balance-label">Total Current Balance</p>
