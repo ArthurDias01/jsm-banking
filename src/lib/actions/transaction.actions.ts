@@ -1,6 +1,6 @@
 "use server";
 
-import { ID } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import { createAdminClient } from "../appwrite";
 import { parseStringify } from "../utils";
 
@@ -16,7 +16,7 @@ export const createTransaction = async (
     const { database } = await createAdminClient();
 
     const newTransaction = await database.createDocument(
-      DATABASE_ID!,
+      DATABASE_ID,
       TRANSACTION_COLLECTION_ID,
       ID.unique(),
       {
@@ -28,7 +28,7 @@ export const createTransaction = async (
 
     return parseStringify(newTransaction);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };
 
@@ -40,18 +40,15 @@ export const getTransactionsByBankId = async ({
 
     const senderTransactions = await database.listDocuments(
       DATABASE_ID,
-      TRANSACTION_COLLECTION_ID
-      // [Query.equal("senderBankId", bankId)]
+      TRANSACTION_COLLECTION_ID,
+      [Query.equal("senderBankId", bankId)]
     );
-
-    
 
     const receiverTransactions = await database.listDocuments(
       DATABASE_ID!,
-      TRANSACTION_COLLECTION_ID!
-      // [Query.equal("receiverBankId", bankId)]
+      TRANSACTION_COLLECTION_ID,
+      [Query.equal("receiverBankId", bankId)]
     );
-
 
     const transactions = {
       total: senderTransactions.total + receiverTransactions.total,
@@ -63,6 +60,6 @@ export const getTransactionsByBankId = async ({
 
     return parseStringify(transactions);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };

@@ -1,4 +1,5 @@
 import { HeaderBox } from "@/components/HeaderBox";
+import { Pagination } from "@/components/Pagination";
 import { TransactionsTable } from "@/components/TransactionsTable";
 import { getAccount, getAccounts } from "@/lib/actions/bank.action";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
@@ -61,11 +62,11 @@ const TransactionHistory = async ({
 
         <section className="flex w-full flex-col gap-6">
           <TransactionsTable transactions={currentTransactions} />
-          {/* {totalPages > 1 && (
+          {totalPages > 1 && (
             <div className="my-4 w-full">
               <Pagination totalPages={totalPages} page={currentPage} />
             </div>
-          )} */}
+          )}
         </section>
       </div>
     </div>
